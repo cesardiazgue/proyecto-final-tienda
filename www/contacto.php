@@ -1,4 +1,5 @@
 <?php
+session_start();
 $titulo = "Contacto";
 $pagina = "contacto";
 include "encabezado.php";

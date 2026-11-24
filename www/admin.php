@@ -1,4 +1,5 @@
 <?php
+session_start();
 $titulo = "Administrador";
 $pagina = "admin";
 include "encabezado.php";

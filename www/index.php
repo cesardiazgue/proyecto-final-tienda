@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "conexion.php";
 $titulo = "Inicio";
 $pagina = "inicio";

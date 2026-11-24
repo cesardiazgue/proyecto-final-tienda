@@ -29,13 +29,29 @@
                     <!-- Menú desplegable de la cuenta -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle <?php if ($pagina == "perfil" || $pagina == "login" || $pagina == "registro" || $pagina == "admin") echo "active"; ?>"
-                           href="#" role="button" data-bs-toggle="dropdown">Mi cuenta</a>
+                           href="#" role="button" data-bs-toggle="dropdown">
+                            <?php
+                            if (isset($_SESSION["id_usuario"])) {
+                                echo "Hola, " . htmlspecialchars($_SESSION["nombre"]);
+                            } else {
+                                echo "Mi cuenta";
+                            }
+                            ?>
+                        </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="perfil.php">Mi perfil</a></li>
-                            <li><a class="dropdown-item" href="login.php">Iniciar sesión</a></li>
-                            <li><a class="dropdown-item" href="registro.php">Crear cuenta</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="admin.php">Administrador</a></li>
+                            <?php if (isset($_SESSION["id_usuario"])) { ?>
+                                <!-- Con sesión iniciada -->
+                                <li><a class="dropdown-item" href="perfil.php">Mi perfil</a></li>
+                                <?php if ($_SESSION["rol"] == "admin") { ?>
+                                    <li><a class="dropdown-item" href="admin.php">Administrador</a></li>
+                                <?php } ?>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="logout.php">Cerrar sesión</a></li>
+                            <?php } else { ?>
+                                <!-- Sin sesión -->
+                                <li><a class="dropdown-item" href="login.php">Iniciar sesión</a></li>
+                                <li><a class="dropdown-item" href="registro.php">Crear cuenta</a></li>
+                            <?php } ?>
                         </ul>
                     </li>
                 </ul>

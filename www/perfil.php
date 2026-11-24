@@ -1,4 +1,5 @@
 <?php
+session_start();
 $titulo = "Mi perfil";
 $pagina = "perfil";
 include "encabezado.php";
