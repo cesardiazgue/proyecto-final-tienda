@@ -41,7 +41,7 @@ $resultado = mysqli_query($conexion, $sql);
                         </div>
                         <!-- Botón -->
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="catalogo.php">Ver en catálogo</a></div>
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="producto.php?id=<?php echo $fila["id_producto"]; ?>">Ver detalle</a></div>
                         </div>
                     </div>
                 </div>

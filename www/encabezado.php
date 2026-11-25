@@ -1,3 +1,18 @@
+<?php
+// Contar los productos del carrito para el número del botón
+include_once "conexion.php";
+$en_carrito = 0;
+if (isset($_SESSION["id_usuario"])) {
+    $id_u = $_SESSION["id_usuario"];
+    $res_c = mysqli_query($conexion, "SELECT SUM(cantidad) AS total FROM carrito WHERE id_usuario = $id_u");
+    $fila_c = mysqli_fetch_assoc($res_c);
+    if ($fila_c["total"] != null) {
+        $en_carrito = $fila_c["total"];
+    }
+}
+?>
+
+<!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -60,7 +75,7 @@
                 <a class="btn <?php if ($pagina == "carrito") echo "btn-dark"; else echo "btn-outline-dark"; ?>" href="carrito.php">
                     <i class="bi-cart-fill me-1"></i>
                     Carrito
-                    <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                    <span class="badge bg-dark text-white ms-1 rounded-pill"><?php echo $en_carrito; ?></span>
                 </a>
             </div>
         </div>
